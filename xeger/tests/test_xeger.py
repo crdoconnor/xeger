@@ -6,8 +6,7 @@ class TestXeger(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_literals(self):
-        pattern = r'foo'
+    def match(self, pattern):
         assert re.match(pattern, xeger.xeger(pattern))
 
     def test_dot(self):
@@ -15,82 +14,66 @@ class TestXeger(unittest.TestCase):
         Verify that the dot character doesn't produce newlines.
         See: https://bitbucket.org/leapfrogdevelopment/rstr/issue/1/
         """
-        pattern = r'.+'
         for i in range(100):
-            assert re.match(pattern, xeger.xeger(pattern))
+            self.match(r'.+')
+
+    def test_literals(self):
+        self.match(r'foo')
 
     def test_digit(self):
-        pattern = r'\d'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'\d')
 
     def test_nondigits(self):
-        pattern = r'\D'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'\D')
 
     def test_literal_with_repeat(self):
-        pattern = r'A{3}'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'A{3}')
 
     def test_literal_with_range_repeat(self):
-        pattern = r'A{2, 5}'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'A{2, 5}')
 
     def test_word(self):
-        pattern = r'\w'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'\w')
 
     def test_nonword(self):
-        pattern = r'\W'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'\W')
 
     def test_or(self):
-        pattern = r'foo|bar'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'foo|bar')
 
     def test_or_with_subpattern(self):
-        pattern = r'(foo|bar)'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'(foo|bar)')
 
     def test_range(self):
-        pattern = r'[A-F]'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'[A-F]')
 
     def test_character_group(self):
-        pattern = r'[ABC]'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'[ABC]')
 
-    def test_carot(self):
-        pattern = r'^foo'
-        assert re.match(pattern, xeger.xeger(pattern))
+    def test_caret(self):
+        self.match(r'^foo')
 
     def test_dollarsign(self):
-        pattern = r'foo$'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'foo$')
 
     def test_not_literal(self):
-        pattern = r'[^a]'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'[^a]')
 
     def test_negation_group(self):
-        pattern = r'[^AEIOU]'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'[^AEIOU]')
 
     def test_lookahead(self):
-        pattern = r'foo(?=bar)'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'foo(?=bar)')
 
     def test_lookbehind(self):
         pattern = r'(?<=foo)bar'
         assert re.search(pattern, xeger.xeger(pattern))
 
     def test_backreference(self):
-        pattern = r'(foo|bar)baz\1'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'(foo|bar)baz\1')
 
     def test_zero_or_more_greedy(self):
-        pattern = r'a*'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'a*')
 
     def test_zero_or_more_non_greedy(self):
-        pattern = r'a*?'
-        assert re.match(pattern, xeger.xeger(pattern))
+        self.match(r'a*?')
