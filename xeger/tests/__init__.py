@@ -1,5 +1,5 @@
 import unittest
-import test_xeger
+from . import test_xeger
 
 def suite():
     loader = unittest.TestLoader()

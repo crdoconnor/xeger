@@ -1,3 +1,3 @@
-from xeger import Xeger
+from .xeger import Xeger
 
 xeger = Xeger().xeger
