@@ -10,7 +10,7 @@ To install, type:
 
 ::
 
-    pip install ptpython
+    pip install xeger
 
 
 To use, type:
