@@ -1,0 +1,6 @@
+build/
+dist/
+xeger.egg-info/
+venv/
+key.py
+*.pyc
