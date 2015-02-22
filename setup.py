@@ -9,7 +9,7 @@ def read(*parts):
 long_description = read('README.rst')
 
 setup(name="xeger",
-      version="0.1",
+      version="0.3",
       description="A library for generating random strings from a valid regular expression.",
       long_description=long_description,
       classifiers=[
@@ -25,11 +25,12 @@ setup(name="xeger",
           'Programming Language :: Python :: 3.2',
           'Programming Language :: Python :: 3.3',
       ],
-      keywords='regular expressions regexpx random generator',
+      keywords='regular expressions regexp testing random generator',
       author='Colm O\'Connor',
       author_email='colm.oconnor.github@gmail.com',
       license='BSD',
-      package_data={},
+      install_requires=[],
+      packages=find_packages(exclude=["docs", "tests*"]),
       zip_safe=False,
       test_suite='xeger.tests.suite',
 )
