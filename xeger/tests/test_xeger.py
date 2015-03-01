@@ -7,7 +7,8 @@ class TestXeger(unittest.TestCase):
         pass
 
     def match(self, pattern):
-        assert re.match(pattern, xeger.xeger(pattern))
+        for _ in range(100):
+            assert re.match(pattern, xeger.xeger(pattern))
 
     def test_dot(self):
         """
