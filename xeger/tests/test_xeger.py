@@ -17,6 +17,21 @@ class TestXeger(unittest.TestCase):
         for i in range(100):
             self.match(r'.+')
 
+    def test_date(self):
+        self.match(r'^([1-9]|0[1-9]|[12][0-9]|3[01])\D([1-9]|0[1-9]|1[012])\D(19[0-9][0-9]|20[0-9][0-9])$')
+        
+    def test_ipv4(self):
+        self.match(r'^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]){3}$')
+        
+    def test_year_1900_2099(self):
+        self.match(r'^(19|20)[\d]{2,2}$')
+
+    def test_positive_or_negative_number(self):
+        self.match(r'^-{0,1}\d*\.{0,1}\d+$')
+            
+    def test_positive_integers(self):
+        self.match(r'^\d+$')
+
     def test_email_complicated(self):
         self.match(r'^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$')
 
