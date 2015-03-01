@@ -17,6 +17,21 @@ class TestXeger(unittest.TestCase):
         for i in range(100):
             self.match(r'.+')
 
+    def test_email_complicated(self):
+        self.match(r'^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$')
+
+    def test_email(self):
+        self.match(r'(.*?)\@(.*?)\.(.*?)')
+
+    def test_alpha(self):
+        self.match(r'[:alpha:]')
+        
+    def test_zero_or_more_anything_non_greedy(self):
+        self.match(r'(.*?)')
+        
+    def test_zero_or_more_greedy(self):
+        self.match(r'(.*)')
+        
     def test_literals(self):
         self.match(r'foo')
 
