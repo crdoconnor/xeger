@@ -21,6 +21,9 @@ class TestXeger(unittest.TestCase):
     def test_date(self):
         self.match(r'^([1-9]|0[1-9]|[12][0-9]|3[01])\D([1-9]|0[1-9]|1[012])\D(19[0-9][0-9]|20[0-9][0-9])$')
         
+    def test_up_to_closing_tag(self):
+        self.match(r'([^<]*)')
+        
     def test_ipv4(self):
         self.match(r'^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]){3}$')
         
