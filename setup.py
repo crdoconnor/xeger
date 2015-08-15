@@ -10,6 +10,7 @@ long_description = read('README.rst')
 
 setup(name="xeger",
       version="0.3",
+      url="https://github.com/crdoconnor/xeger",
       description="A library for generating random strings from a valid regular expression.",
       long_description=long_description,
       classifiers=[
