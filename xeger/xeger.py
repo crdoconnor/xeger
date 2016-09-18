@@ -16,7 +16,7 @@ if sys.version_info[0] >= 3:
     xrange = range
 
 
-class Xeger(object):
+class Xeger(object):
     def __init__(self, limit=10):
         super(Xeger, self).__init__()
         self._limit = limit
