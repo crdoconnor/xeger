@@ -10,6 +10,12 @@ class TestXeger(unittest.TestCase):
         for _ in range(100):
             assert re.match(pattern, xeger.xeger(pattern))
 
+    def test_single_dot(self):
+        """
+        Verify that the dot character produces only a single character.
+        """
+        self.match(r'^.$')
+
     def test_dot(self):
         """
         Verify that the dot character doesn't produce newlines.
@@ -20,19 +26,19 @@ class TestXeger(unittest.TestCase):
 
     def test_date(self):
         self.match(r'^([1-9]|0[1-9]|[12][0-9]|3[01])\D([1-9]|0[1-9]|1[012])\D(19[0-9][0-9]|20[0-9][0-9])$')
-        
+
     def test_up_to_closing_tag(self):
         self.match(r'([^<]*)')
-        
+
     def test_ipv4(self):
         self.match(r'^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]){3}$')
-        
+
     def test_year_1900_2099(self):
         self.match(r'^(19|20)[\d]{2,2}$')
 
     def test_positive_or_negative_number(self):
         self.match(r'^-{0,1}\d*\.{0,1}\d+$')
-            
+
     def test_positive_integers(self):
         self.match(r'^\d+$')
 
@@ -44,13 +50,13 @@ class TestXeger(unittest.TestCase):
 
     def test_alpha(self):
         self.match(r'[:alpha:]')
-        
+
     def test_zero_or_more_anything_non_greedy(self):
         self.match(r'(.*?)')
-        
+
     def test_zero_or_more_greedy(self):
         self.match(r'(.*)')
-        
+
     def test_literals(self):
         self.match(r'foo')
 
