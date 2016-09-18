@@ -58,7 +58,7 @@ class Xeger(object):
                 lambda x: choice(string.printable.replace(unichr(x), '')),
             "at": lambda x: '',
             "in": lambda x: self._handle_in(x),
-            "any": lambda x: string.printable.replace('\n', ''),
+            "any": lambda x: choice(string.printable.replace('\n', '')),
             "range": lambda x: [unichr(i) for i in xrange(x[0], x[1] + 1)],
             "category": lambda x: self._categories[x](),
             'branch':
