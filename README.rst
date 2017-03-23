@@ -15,8 +15,9 @@ To install, type:
 
 To use, type:
 
->>> import xeger
->>> xeger.xeger("/json/([0-9]+)", limit=10)  # default limit = 10
+>>> from xeger import Xeger
+>>> x = Xeger(limit=10)  # default limit = 10
+>>> x.xeger("/json/([0-9]+)")
 u'/json/15062213'
 
 
