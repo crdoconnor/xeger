@@ -9,7 +9,7 @@ def read(*parts):
 long_description = read('README.rst')
 
 setup(name="xeger",
-      version="0.3.1",
+      version="0.3.2",
       url="https://github.com/crdoconnor/xeger",
       description="A library for generating random strings from a valid regular expression.",
       long_description=long_description,
