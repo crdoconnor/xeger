@@ -94,7 +94,10 @@ class Xeger(object):
         return self._cases[str(opcode).lower()](value)
 
     def _handle_group(self, value):
-        result = ''.join(self._handle_state(i) for i in value[1])
+        if sys.version_info < (3,6):
+            result = ''.join(self._handle_state(i) for i in value[1])
+        else:
+            result = ''.join(self._handle_state(i) for i in value[3])
         if value[0]:
             self._cache[value[0]] = result
         return result
