@@ -14,4 +14,5 @@ install:
   - pip install -r test-requirements.txt
 
 script:
-  - pytest -vv --cov-fail-under 90 --cov=/xeger --cov-config .coveragerc xeger/tests
+  # need to add coverage support
+  - pytest -vv xeger/tests
