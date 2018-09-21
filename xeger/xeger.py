@@ -60,7 +60,7 @@ class Xeger(object):
             "in": lambda x: self._handle_in(x),
             "any": lambda x: choice(string.printable.replace('\n', '')),
             "range": lambda x: [unichr(i) for i in xrange(x[0], x[1] + 1)],
-            "category": lambda x: self._categories[x](),
+            "category": lambda x: self._categories[str(x).lower()](),
             'branch':
                 lambda x: ''.join(self._handle_state(i) for i in choice(x[1])),
             "subpattern": lambda x: self._handle_group(x),
