@@ -65,10 +65,6 @@ def test_zero_or_more_anything_non_greedy():
     match(r'(.*?)')
 
 
-def test_zero_or_more_greedy():
-    match(r'(.*)')
-
-
 def test_literals():
     match(r'foo')
 
@@ -144,6 +140,7 @@ def test_backreference():
 
 def test_zero_or_more_greedy():
     match(r'a*')
+    match(r'(.*)')
 
 
 def test_zero_or_more_non_greedy():
@@ -151,5 +148,5 @@ def test_zero_or_more_non_greedy():
 
 
 if __name__ == '__main__':
-    pytest.main([__file__])
+    pytest.main([__file__, '-vv'])
 
