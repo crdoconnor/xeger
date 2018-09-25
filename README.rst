@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/pousisk/xeger.svg?branch=master
-    :target: https://travis-ci.org/poussik/xeger
+.. image:: https://travis-ci.org/crdoconnor/xeger.svg?branch=master
+    :target: https://travis-ci.org/crdoconnor/xeger
 
 Xeger
 =====
