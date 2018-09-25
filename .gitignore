@@ -1,7 +1,6 @@
 build/
 dist/
 xeger.egg-info/
-venv/
-venv3/
-key.py
+htmlcov
 *.pyc
+.tox/

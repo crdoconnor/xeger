@@ -1,12 +1,15 @@
 language: python
+# 3.3 not supported for testing: https://github.com/pytest-dev/py/issues/175
 python:
   - "2.6"
   - "2.7"
-  - "3.2"
-  - "3.3"
   - "3.4"
   - "3.5"
   - "3.6"
+
 install:
-  - "pip install ."
-script: nosetests
+  - pip install -r test-requirements.txt
+
+script:
+  # need to add coverage support
+  - pytest -vv xeger/tests
