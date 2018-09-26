@@ -113,7 +113,7 @@ class Xeger(object):
     def _handle_repeat(self, start_range, end_range, value):
         result = []
         end_range = min((end_range, self._limit))
-        times = randint(start_range, end_range)
+        times = randint(start_range, max(start_range, end_range))
         for i in xrange(times):
             result.append(''.join(self._handle_state(i) for i in value))
         return ''.join(result)

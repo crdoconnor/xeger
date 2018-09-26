@@ -147,6 +147,13 @@ def test_zero_or_more_non_greedy():
     match(r'a*?')
 
 
+@pytest.mark.parametrize("limit", range(5))
+def test_incoherent_limit_and_qualifier(limit):
+    r = xeger.Xeger(limit=limit)
+    o = r.xeger(r'a{2}')
+    assert len(o) == 2
+
+
 if __name__ == '__main__':
     pytest.main([__file__, '-vv'])
 
