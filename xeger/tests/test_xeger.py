@@ -154,6 +154,36 @@ def test_incoherent_limit_and_qualifier(limit):
     assert len(o) == 2
 
 
+@pytest.mark.parametrize("seed", [777, 1234, 369, 8031])
+def test_xeger_object_seeding(seed):
+    xg1 = xeger.Xeger(seed=seed)
+    string1 = xg1.xeger(r'\w{3,4}')
+
+    xg2 = xeger.Xeger(seed=seed)
+    string2 = xg2.xeger(r'\w{3,4}')
+
+    assert string1 == string2
+
+
+def test_xeger_random_instance():
+    xg1 = xeger.Xeger()
+    xg_random = xg1.random
+
+    xg2 = xeger.Xeger()
+    xg2.random = xg_random
+
+    assert xg1.random == xg2.random
+    # xg_random is used by both, so if we give 
+    # the same seed, the result should be the same
+
+    xg_random.seed(90)
+    string1 = xg1.xeger(r'\w\d\w')
+    xg_random.seed(90)
+    string2 = xg2.xeger(r'\w\d\w')
+
+    assert string1 == string2
+
+
 if __name__ == '__main__':
     pytest.main([__file__, '-vv'])
 

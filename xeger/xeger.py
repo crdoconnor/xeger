@@ -9,7 +9,7 @@ import re
 import sys
 import string
 import itertools
-from random import choice, randint
+from random import Random
 
 if sys.version_info[0] >= 3:
     unichr = chr
@@ -17,10 +17,16 @@ if sys.version_info[0] >= 3:
 
 
 class Xeger(object):
-    def __init__(self, limit=10):
+    def __init__(self, limit=10, seed=None):
         super(Xeger, self).__init__()
         self._limit = limit
         self._cache = dict()
+
+        self._random = Random()
+        self.random_choice = self._random.choice
+        self.random_int = self._random.randint
+        if seed:
+            self.seed(seed)
 
         self._alphabets = {
             'printable': string.printable,
@@ -55,14 +61,14 @@ class Xeger(object):
         self._cases = {
             "literal": lambda x: unichr(x),
             "not_literal":
-                lambda x: choice(string.printable.replace(unichr(x), '')),
+                lambda x: self.random_choice(string.printable.replace(unichr(x), '')),
             "at": lambda x: '',
             "in": lambda x: self._handle_in(x),
-            "any": lambda x: choice(string.printable.replace('\n', '')),
+            "any": lambda x: self.random_choice(string.printable.replace('\n', '')),
             "range": lambda x: [unichr(i) for i in xrange(x[0], x[1] + 1)],
             "category": lambda x: self._categories[str(x).lower()](),
             'branch':
-                lambda x: ''.join(self._handle_state(i) for i in choice(x[1])),
+                lambda x: ''.join(self._handle_state(i) for i in self.random_choice(x[1])),
             "subpattern": lambda x: self._handle_group(x),
             "assert": lambda x: ''.join(self._handle_state(i) for i in x[1]),
             "assert_not": lambda x: '',
@@ -82,6 +88,19 @@ class Xeger(object):
         result = self._build_string(parsed)
         self._cache.clear()
         return result
+
+    @property
+    def random(self):
+        return self._random
+
+    @random.setter
+    def random(self, random_instance):
+        self._random = random_instance
+        self.random_choice = self._random.choice
+        self.random_int = self._random.randint
+
+    def seed(self, seed):
+        self._random.seed(seed)
 
     def _build_string(self, parsed):
         newstr = []
@@ -106,14 +125,14 @@ class Xeger(object):
         candidates = list(itertools.chain(*(self._handle_state(i) for i in value)))
         if candidates[0] is False:
             candidates = set(string.printable).difference(candidates[1:])
-            return choice(list(candidates))
+            return self.random_choice(list(candidates))
         else:
-            return choice(candidates)
+            return self.random_choice(candidates)
 
     def _handle_repeat(self, start_range, end_range, value):
         result = []
         end_range = min((end_range, self._limit))
-        times = randint(start_range, max(start_range, end_range))
+        times = self.random_int(start_range, max(start_range, end_range))
         for i in xrange(times):
             result.append(''.join(self._handle_state(i) for i in value))
         return ''.join(result)
