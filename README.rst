@@ -24,6 +24,6 @@ u'/json/15062213'
 About
 =====
 
-Code borrowed and cleaned up from `the python module
-rstr by Leap Frog Development <http://jpmens.net/2010/04/26/resty/>`,
-in turn inspired by the Java library `Xeger <http://code.google.com/p/xeger/>`.
+Code adapted and refactored from the Python library
+`rstr by Leapfrog Online <https://github.com/leapfrogonline/rstr>`_ (now iProspect),
+in turn inspired by the Java library `Xeger <http://code.google.com/p/xeger/>`_.
