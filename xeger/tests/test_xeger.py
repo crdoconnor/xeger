@@ -1,3 +1,4 @@
+import itertools
 import re
 import unittest
 import xeger
@@ -184,6 +185,9 @@ def test_xeger_random_instance():
     assert string1 == string2
 
 
+def test_xeger():
+    assert xeger.Xeger(seed=0).xeger('.{1,8}') == xeger.Xeger(seed=0).xeger('.{1,8}')
+
+
 if __name__ == '__main__':
     pytest.main([__file__, '-vv'])
-
