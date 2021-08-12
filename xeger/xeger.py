@@ -25,7 +25,7 @@ class Xeger(object):
         self._random = Random()
         self.random_choice = self._random.choice
         self.random_int = self._random.randint
-        if seed:
+        if seed is not None:
             self.seed(seed)
 
         self._alphabets = {
