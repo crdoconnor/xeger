@@ -12,4 +12,4 @@ install:
 
 script:
   # need to add coverage support
-  - pytest -vv xeger/tests
+  - pytest -vv tests
