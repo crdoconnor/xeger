@@ -14,7 +14,10 @@ from random import Random
 if sys.version_info[0] >= 3:
     unichr = chr
     xrange = range
-
+try:
+    import sre_parse
+except ImportError:
+    sre_parse = re.sre_parse
 
 class Xeger(object):
     def __init__(self, limit=10, seed=None):
@@ -84,7 +87,7 @@ class Xeger(object):
         except AttributeError:
             pattern = string_or_regex
 
-        parsed = re.sre_parse.parse(pattern)
+        parsed = sre_parse.parse(pattern)
         result = self._build_string(parsed)
         self._cache.clear()
         return result
