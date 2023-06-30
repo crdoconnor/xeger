@@ -17,7 +17,10 @@ if sys.version_info[0] >= 3:
 try:
     import sre_parse
 except ImportError:
-    sre_parse = re.sre_parse
+    if hasattr(re, "sre_parse"):
+        sre_parse = re.sre_parse
+    else:
+        sre_parse = re._parser
 
 class Xeger(object):
     def __init__(self, limit=10, seed=None):
